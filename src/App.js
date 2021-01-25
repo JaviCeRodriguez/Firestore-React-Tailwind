@@ -8,6 +8,18 @@ import { Helmet } from "react-helmet";
 function App() {
     return (
         <div className="bg-gray-900">
+            <p className="w-full text-right text-white text-xs pr-2 pt-2">
+                Hecho por{" "}
+                <a
+                    href="https://github.com/JaviCeRodriguez"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium hover:text-yellow-500"
+                >
+                    Javier
+                </a>{" "}
+                con muchos 🧉
+            </p>
             <Links />
             <ToastContainer />
             <Helmet>

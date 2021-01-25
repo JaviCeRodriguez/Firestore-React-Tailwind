@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
+import { toast } from "react-toastify";
 
 const LinkForm = (props) => {
     // Estado inicial para campos
@@ -18,9 +19,28 @@ const LinkForm = (props) => {
         setValues({ ...values, [name]: value });
     };
 
+    // Validación de URL
+    const validURL = (str) => {
+        var pattern = new RegExp(
+            "^(https?:\\/\\/)?" + // protocol
+                "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+                "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+                "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+                "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+                "(\\#[-a-z\\d_]*)?$",
+            "i"
+        ); // fragment locator
+        return !!pattern.test(str);
+    };
+
     // Envio datos a padre Links y limpio los campos
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!validURL(values.url)) {
+            return toast("URL inválida!", { type: "warning", autoClose: 3000 });
+        }
+
         props.addOrEditLink(values);
         setValues({ ...initialStateValues });
     };
@@ -43,7 +63,7 @@ const LinkForm = (props) => {
 
     return (
         <form
-            className="flex flex-col items-center border-2 border-red-500 rounded-sm w-72 m-4"
+            className="flex flex-col items-center border-2 border-red-500 rounded-sm w-72 m-4 mt-8"
             onSubmit={handleSubmit}
         >
             <h4 className="text-white font-semibold m-2">
