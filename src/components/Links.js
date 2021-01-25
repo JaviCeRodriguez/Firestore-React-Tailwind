@@ -12,13 +12,13 @@ const Link = () => {
         try {
             if (currentId === "") {
                 await db.collection("links").doc().set(linkObject);
-                toast("Nuevo enlace agregado", {
+                toast("✔️ Nuevo enlace agregado", {
                     type: "success",
                     autoClose: 2000,
                 });
             } else {
                 await db.collection("links").doc(currentId).update(linkObject);
-                toast("Enlace actualizado", {
+                toast("☑️ Enlace actualizado", {
                     type: "info",
                     autoClose: 2000,
                 });
@@ -33,7 +33,7 @@ const Link = () => {
     const onDeleteLink = async (id) => {
         if (window.confirm("Seguro de que querés eliminar el enlace?")) {
             await db.collection("links").doc(id).delete();
-            toast("Enlace eliminado", {
+            toast("🔥 Enlace eliminado", {
                 type: "error",
                 autoClose: 2000,
             });

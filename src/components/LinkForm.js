@@ -38,7 +38,10 @@ const LinkForm = (props) => {
         e.preventDefault();
 
         if (!validURL(values.url)) {
-            return toast("URL inválida!", { type: "warning", autoClose: 3000 });
+            return toast("⚠️ URL inválida!", {
+                type: "warning",
+                autoClose: 3000,
+            });
         }
 
         props.addOrEditLink(values);
