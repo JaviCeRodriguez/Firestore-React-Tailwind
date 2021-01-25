@@ -47,7 +47,7 @@ const LinkForm = (props) => {
             onSubmit={handleSubmit}
         >
             <h4 className="text-white font-semibold m-2">
-                Agrega sitios tus web favoritos!{" "}
+                Agrega tus sitios web favoritos!{" "}
                 <i class="fas fa-star text-yellow-500"></i>
             </h4>
             <div className="flex justify-center items-center m-2 w-full">
